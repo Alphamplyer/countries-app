@@ -7,8 +7,8 @@ import {
   ScrollRestoration,
 } from "react-router";
 
+import stylesheet from "~/tailwind.css?url";
 import type { Route } from "./+types/root";
-import "./app.css";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -16,6 +16,10 @@ export const links: Route.LinksFunction = () => [
     rel: "preconnect",
     href: "https://fonts.gstatic.com",
     crossOrigin: "anonymous",
+  },
+  {
+    rel: "stylesheet",
+    href: stylesheet,
   },
   {
     rel: "stylesheet",
