@@ -18,7 +18,7 @@ export default function Home() {
           <div className="w-full px-3 md:w-1/2">
             <div className="space-y-6 sm:max-w-md lg:max-w-lg">
               <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-                <span className="block xl:inline">Explore Countries with</span>
+                <span className="block xl:inline">Explore Countries with </span>
                 <span className="block text-indigo-600 xl:inline">
                   Real-Time Data
                 </span>
