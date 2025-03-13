@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import type { Route } from "./+types/home";
 
@@ -15,11 +16,27 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Countries({ loaderData }: Route.ComponentProps) {
-  console.log(loaderData);
+  const [search, setSearch] = useState<string>("");
+  const filteredCountries = loaderData.filter((country: any) => {
+    const matchesSearch =
+      !search ||
+      country.name.common.toLowerCase().includes(search.toLowerCase());
+    return matchesSearch;
+  });
+
   return (
     <div>
+      <h2>Countries</h2>
+      <div>
+        <input
+          type="text"
+          placeholder="Search by name..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
       <ul>
-        {loaderData.map((country: any, key: any) => (
+        {filteredCountries.map((country: any, key: any) => (
           <li key={key}>
             <Link to={`/countries/${country.name.common}`}>
               {country.name.common}
