@@ -17,11 +17,15 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Countries({ loaderData }: Route.ComponentProps) {
   const [search, setSearch] = useState<string>("");
+  const [region, setRegion] = useState<string>("");
+
   const filteredCountries = loaderData.filter((country: any) => {
+    const matchesRegion =
+      !region || country.region.toLowerCase() === region.toLowerCase();
     const matchesSearch =
       !search ||
       country.name.common.toLowerCase().includes(search.toLowerCase());
-    return matchesSearch;
+    return matchesRegion && matchesSearch;
   });
 
   return (
@@ -34,6 +38,18 @@ export default function Countries({ loaderData }: Route.ComponentProps) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+        <select
+          id="region"
+          value={region}
+          onChange={(e) => setRegion(e.target.value)}
+        >
+          <option value="">All Regions</option>
+          <option value="africa">Africa</option>
+          <option value="americas">Americas</option>
+          <option value="asia">Asia</option>
+          <option value="europe">Europe</option>
+          <option value="oceania">Oceania</option>
+        </select>
       </div>
       <ul>
         {filteredCountries.map((country: any, key: any) => (
